@@ -25,22 +25,14 @@ public class MedicalData {
     @Column(name = "dateTheDataWasAdded")
     private Date dateTheDataWasAdded;
 
-    @Column(name = "pulse")
-    private String pulse;
-
-    @Column(name = "heartbeat")
-    private String heartbeat;
-
     public MedicalData() {
     }
 
-    public MedicalData(Long id, String medicalConclusion, String recommendationsForActivities, String pressure, String pulse, String heartbeat) {
+    public MedicalData(Long id, String medicalConclusion, String recommendationsForActivities, String pressure) {
         this.id = id;
         this.medicalConclusion = medicalConclusion;
         this.recommendationsForActivities = recommendationsForActivities;
         this.pressure = pressure;
-        this.pulse = pulse;
-        this.heartbeat = heartbeat;
     }
 
     public Long getId() {
@@ -92,21 +84,5 @@ public class MedicalData {
         if (this.dateTheDataWasAdded == null) {
             this.dateTheDataWasAdded = new Date();
         }
-    }
-
-    public void setPulse(String pulse) {
-        this.pulse = pulse;
-    }
-
-    public String getPulse() {
-        return pulse;
-    }
-
-    public String getHeartbeat() {
-        return heartbeat;
-    }
-
-    public void setHeartbeat(String heartbeat) {
-        this.heartbeat = heartbeat;
     }
 }
