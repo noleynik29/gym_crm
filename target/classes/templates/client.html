@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Данные клиента</title>
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+        <link th:href="@{/css/client_style.css}" rel="stylesheet"/>
+        <link rel="icon" href="data:,">
+    </head>
+    <body>
+        <div class="container">
+
+            <form class="card form-horizontal" th:object="${client}" id="contact_form">
+
+                <div class="row title-row">
+                        <a href="/" class="button button_primary">
+                            <span class="arrow-icon">&larr;</span>
+                            Назад
+                        </a>
+
+                    <div class="right-content">
+                        <a th:href="@{/__${client.id}__}" class="button button_primary">
+                            Изменить
+                            <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                <fieldset>
+
+                    <legend><center><h1><b>Данные клиента</b></h1></center></legend><br>
+
+                    <div class="row button-row">
+                        <div class="form-group regime">
+                            <label class="col-md-4 control-label"></label>
+                            <div><br>
+                                <a th:href="@{/clients/__${client.id}__/trainingProgram}" class="button button_primary">Программа тренировок <i class="glyphicon glyphicon-list-alt"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="form-group regime">
+                            <label class="col-md-4 control-label"></label>
+                            <div><br>
+                                <a th:href="@{/clients/__${client.id}__/clients_files}" class="button button_primary">Файлы <i class="glyphicon glyphicon-folder-open"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="form-group regime">
+                            <label class="col-md-4 control-label"></label>
+                            <div><br>
+                                <a th:href="@{/clients/__${client.id}__/medical_data}" class="button button_primary">Медицинские показания <i class="glyphicon glyphicon-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Имя</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input  name="name" id="name" th:field="*{name}" th:value="${client.name}" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Фамилия</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="surname" id="surname" th:field="*{surname}" th:value="${client.surname}" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Номер телефона</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="mobilePhone" id="mobilePhone" th:value="${client.mobilePhone}" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Дата рождения</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input type="text" name="dateOfBirth" id="dateOfBirth" class="form-control" th:value="${#dates.format(client.dateOfBirth, 'dd.MM.yyyy')}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Дата регистрации</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input type="text" name="dateOfRegistration" id="dateOfRegistration" class="form-control" th:value="${#dates.format(client.dateOfRegistration, 'dd.MM.yyyy')}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Абонимент</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>
+                                <input name="subscription" id="subscription" th:value="${client.subscription}" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4"><br>
+                            <a th:href="@{'/clients/delete/' + ${client.id}}" class="button button_primary btn-delete" th:nameSurname="${client.name + ' ' + client.surname}">Удалить <i class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="modal fade text-center" id="confirmModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h5 class="modal-title">Удаление клиента</h5>
+                    </div>
+
+                    <div class="modal-body">
+                        <span id="confirmText"></span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a type="button" id="yesBtn" class="btn btn-danger">Да</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/delete_client.js}"></script>
+    </body>
+</html>

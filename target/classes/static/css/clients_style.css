@@ -1,0 +1,343 @@
+.pagination-container {
+    text-align: right;
+    padding-right: 0;
+}
+
+.page-select {
+    padding-left: 0;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.pointer-disabled {
+    pointer-events: none;
+}
+
+body {
+    text-align: center;
+    padding: 40px 0;
+    background: #0d0d0d;
+    font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+}
+
+h1 {
+          color: #e6e600;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-weight: 900;
+          font-size: 40px;
+}
+
+p {
+          color: #404F5E;
+          font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+          font-size:20px;
+          margin: 0;
+}
+
+legend {
+        border-bottom: 1px solid #ffff00;
+}
+
+.control-label {
+        color: #ffff00;
+        font-size:18px;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+}
+
+.input-group {
+         background-color: #0d0d0d;
+}
+
+.input-group-addon {
+        color: #ffff00;
+        background-color: #0d0d0d;
+        border: 1px solid #ffff00;
+}
+
+.form-control {
+        color: #ffff00;
+        background-color: #272727;
+        border: 1px solid #ffff00;
+        font-size:18px;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+}
+
+::-webkit-calendar-picker-indicator {
+         filter: invert(1);
+}
+
+.card {
+        background: #272727;
+        padding: 10px 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #1a1a1a;
+        display: inline-block;
+        margin: 0 auto;
+      }
+
+.well {
+        min-height: 20px;
+        padding: 19px;
+        margin-bottom: 20px;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.back-button {
+        display: flex;
+        flex-direction: row;
+}
+
+.button {
+        margin: 0;
+        margin-top: 20px;
+        padding: 0.75rem 1rem;
+        border: 0;
+        border-radius: 0.317rem;
+        background-color: #ffff00;
+        color: #0d0d0d;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 1.5;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -webkit-font-smoothing: antialiased;
+}
+
+.button:hover {
+        opacity: 0.85;
+        text-decoration: none;
+}
+
+.button:active {
+        box-shadow: inset 0 3px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.button:focus {
+        outline: thin dotted #444;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+}
+
+.button_primary {
+        background-color: #ffff00;
+        text-decoration: none;
+        float: right;
+        margin-bottom: 17px;
+}
+
+.pagination-container {
+        text-align: right;
+        padding-right: 0;
+    }
+
+    .page-select {
+        padding-left: 0;
+    }
+
+    .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .pointer-disabled {
+        pointer-events: none;
+    }
+
+    .pagination > li > a {
+        background-color: #272727;
+        color: #ffff00;
+        border-color: #ffff00;
+    }
+
+    .pagination > .active > a
+    {
+        color: #0d0d0d;
+        background-color: #ffff00 !Important;
+        border: solid 1px #ffff00 !Important;
+    }
+
+    .pagination > li > a:focus,
+    .pagination > li > a:hover,
+    .pagination > li > span:focus,
+    .pagination > li > span:hover
+    {
+        color: #0d0d0d;
+        background-color: #eee;
+        border-color: #ffff00;
+    }
+
+table {
+  border-spacing: 0;
+  border-collapse: separate;
+  width: 100%;
+  max-width: 100%;
+  display: table;
+  text-indent: initial;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+}
+
+tr>td {
+    font-size: 24px;
+    padding: 18px 25px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}
+
+th {
+    font-size: 24px;
+    padding: 18px 25px;
+    display: table-cell;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table>tbody>tr>th {
+    font-size: 24px;
+    padding: 18px 25px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}
+
+.table>tbody>tr>td{
+    font-size: 24px;
+    padding: 18px 25px;
+    line-height: 1.42857143;
+    vertical-align: top;
+}
+
+th, td {
+  color: #e6e600;
+  background: #272727;
+  font-size: 24px;
+  border: 1px solid #e6e600;
+}
+
+td a {
+    color: #e6e600;
+    display: block;
+    text-decoration: none;
+}
+
+td a:hover {
+    color: #baba00;
+    text-decoration: none;
+}
+
+.row {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.title-row h1 {
+    margin: 0 25px;
+}
+
+.right-content {
+    flex: 1;
+    text-align: right;
+}
+
+.glyphicon {
+    color: #ffff00;
+}
+
+.glyphicon:hover {
+    color: #baba00;
+}
+
+.left {
+    float: left;
+}
+
+.modal-content {
+    background-color: #272727;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title {
+    font-size: 30px;
+    color: #e6e600;
+}
+
+.modal-body {
+    font-size: 22px;
+    color: #e6e600;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.btn-danger {
+    color: #272727;
+    background-color: #e6e600;
+    border-color: #e6e600;
+}
+
+.search {
+  width: 30%;
+  position: relative;
+  display: flex;
+  margin-left: -15px;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 2px solid #ffff00;
+  border-right: none;
+  padding: 5px;
+  height: 40px;
+  outline: none;
+  color: #ffff00;
+  background-color: #272727;
+  font-size: 20px;
+}
+
+.searchTerm:focus{
+  color: #ffff00;
+}
+
+.searchButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ffff00;
+  background: #ffff00;
+  text-align: center;
+  color: #0d0d0d;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.glyphicon-search {
+    margin-top: 5px;
+    color: #0d0d0d;
+}

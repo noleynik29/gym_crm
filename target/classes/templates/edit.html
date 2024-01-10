@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Изменение клиента</title>
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+        <link th:href="@{/css/edit_style.css}" rel="stylesheet"/>
+        <link rel="icon" href="data:,">
+    </head>
+    <body>
+        <div class="container">
+
+            <form class="card form-horizontal" th:action="@{/clients/__${client.id}__}" th:object="${client}" method="post" id="contact_form">
+
+                <div class="row title-row">
+                        <a th:href="@{/clients/__${client.id}__}" class="button button_primary">
+                            <span class="arrow-icon">&larr;</span>
+                            Назад
+                        </a>
+                </div>
+
+                <fieldset>
+
+                    <legend><center><h1><b>Изменение данных клиента</b></h1></center></legend><br>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Имя</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input  name="name" id="name" th:field="*{name}" required pattern="[А-Яа-яЁёІіЇїЄєҐґ]+" title="Имя должно содержать только украинские и русские буквы" th:value="${client.name}" class="form-control" autocomplete="off" type="text">
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span> <!-- Display error message if name is invalid -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Фамилия</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="surname" id="surname" th:field="*{surname}" required pattern="[А-Яа-яЁёІіЇїЄєҐґ]+" title="Фамилия должна содержать только украинские и русские буквы" th:value="${client.surname}" class="form-control" autocomplete="off" type="text">
+                                <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red;"></span> <!-- Display error message if surname is invalid -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Номер телефона</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="mobilePhone" id="mobilePhone" required pattern="^\d{10,12}$" title="Номер мобильного должен состоять из 10-12 цифр" th:value="${client.mobilePhone}" class="form-control" autocomplete="off" type="text">
+                                <span th:if="${#fields.hasErrors('mobilePhone')}" th:errors="*{mobilePhone}" style="color: red;"></span> <!-- Display error message if mobile phone is invalid -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Дата рождения</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input name="dateOfBirth" id="dateOfBirth" class="form-control" th:value="${#dates.format(client.dateOfBirth, 'yyyy-MM-dd')}"  type="date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" >Абонимент</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>
+                                <select  name="subscription" id="subscription" th:field="*{subscription}" required placeholder="Тип абонимента" class="form-control">
+                                    <option value="Безлимитный абонимент">Безлимитный абонимент</option>
+                                    <option value="Абонимент 12 занятий">Абонимент 12 занятий</option>
+                                    <option value="Абонимент 12 занятий кинезотерапия">Абонимент 12 занятий кинезотерапия</option>
+                                    <option value="Абонимент 12+1">Абонимент 12+1</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4"><br>
+                            <button type="submit" class="button button_primary" >Изменить <span class="glyphicon glyphicon-pencil"></span></button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>
