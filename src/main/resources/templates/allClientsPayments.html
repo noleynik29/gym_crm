@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Все списки посещения</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link th:href="@{/css/allClientsPayments_style.css}" rel="stylesheet"/>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <div class="row title-row">
+        <a th:href="@{/clientsPayments}" class="button button_primary">
+            <span class="arrow-icon">&larr;</span>
+            Назад
+        </a>
+    </div>
+<div th:each="clientsPayments : ${allClientsPayments}" class="cycle-div">
+    <div class="form-group form-group-button">
+        <div class="center"><br>
+            <a th:href="@{/clientsPayments/__${clientsPayments.id}__}" th:text="${clientsPayments.name}" class="button button_primary"></a>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

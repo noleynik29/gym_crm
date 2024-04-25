@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Медицинские показания</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link th:href="@{/css/medical_data_style.css}" rel="stylesheet"/>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+<div class="container">
+
+    <form class="card form-horizontal" th:object="${client}" id="contact_form">
+
+        <div class="row title-row">
+            <a th:href="@{/clients/__${client.id}__}" class="button button_primary">
+                <span class="arrow-icon">&larr;</span>
+                Назад
+            </a>
+        </div>
+
+        <fieldset>
+
+            <legend><center><h1 th:text="'Медицинские показания: ' + ${client.name} + ' ' + ${client.surname}"></h1></center></legend><br>
+
+            <div th:if="${noDataMessage}">
+                <p class="noDataText" th:text="${noDataMessage}"></p>
+            </div>
+
+            <div th:if="${medicalData}">
+                <form th:object="${medicalData}">
+
+                    <div class="form-group form-group-button">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4"><br>
+                            <a th:href="@{/clients/__${client.id}__/medical_data/allMedicalData}" class="button button_primary">За всё время <i class="glyphicon glyphicon-list-alt"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Дата добавления</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                <input type="text" name="dateTheDataWasAdded" class="form-control only-read" th:value="${#dates.format(medicalData.dateTheDataWasAdded, 'dd.MM.yyyy')}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Давление</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
+                                <input  name="pressure" th:value="${medicalData.pressure}" placeholder="Давление" class="form-control only-read" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Медицинские заключения</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                <input name="medicalConclusion" th:value="${medicalData.medicalConclusion}" placeholder="Медицинские заключения" class="form-control only-read" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Рекомендации к занятиям</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                <input name="recommendationsForActivities" th:value="${medicalData.recommendationsForActivities}" placeholder="Рекомендации к занятиям" class="form-control only-read" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4"><br>
+                            <a th:href="@{'/clients/' + ${client.id} + '/medical_data/delete/' + ${medicalData.id}}" class="button button_primary btn-delete" th:nameSurname="${client.name + ' ' + client.surname}">Удалить <i class="glyphicon glyphicon-trash"></i></a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </fieldset>
+    </form>
+    <div class="form-group button_hidden">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4"><br>
+            <a class="button button_primary" id="toggle">Добавить <i class="glyphicon glyphicon-plus" ></i></a>
+        </div>
+    </div>
+            <div id="content" class="is-hidden">
+                <form class="card form-horizontal" th:object="${medicalData}" id="medical_form" method="post" th:action="@{'/clients/' + ${client.id} + '/medical_data'}">
+                    <legend><center><h1><b>Добавление новых медицинских данных</b></h1></center></legend><br>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Давление</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
+                                <input  name="pressure" id="pressure" required placeholder="Давление" class="form-control" autocomplete="off" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Медицинские заключения</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                <input name="medicalConclusion" id="medicalConclusion" required placeholder="Медицинские заключения" autocomplete="off" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Рекомендации к занятиям</label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                                <input name="recommendationsForActivities" id="recommendationsForActivities" required placeholder="Рекомендации к занятиям" autocomplete="off" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4"><br>
+                            <button type="submit" form="medical_form" class="button button_primary" >Сохранить данные <span class="glyphicon glyphicon-pencil"></span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+</div>
+
+<div class="modal fade text-center" id="confirmModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h5 class="modal-title">Удаление мед.данных</h5>
+            </div>
+
+            <div class="modal-body">
+                <span id="confirmText"></span>
+            </div>
+
+            <div class="modal-footer">
+                <a type="button" id="yesBtn" class="btn btn-danger">Да</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/delete_med_data.js}"></script>
+<script th:src="@{/js/show-form.js}"></script>
+</body>
+</html>

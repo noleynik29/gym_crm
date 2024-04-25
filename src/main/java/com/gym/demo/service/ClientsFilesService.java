@@ -52,7 +52,13 @@ public class ClientsFilesService {
         clientsFile.setFileName(fileName);
         clientsFile.setClientId(userId);
 
-        String folderPath = System.getProperty("user.home") + "\\Desktop\\UserFiles\\" + clientsName + "\\";
+        String clientsFolderPath = System.getProperty("user.home") + "\\Desktop\\Феникс Файлы Клиентов\\";
+        File clientsDirectory = new File(clientsFolderPath);
+        if (!clientsDirectory.exists()){
+            clientsDirectory.mkdir();
+        }
+
+        String folderPath = System.getProperty("user.home") + "\\Desktop\\Феникс Файлы Клиентов\\" + clientsName + "\\";
         File directory = new File(folderPath);
         if (!directory.exists()){
             directory.mkdir();
@@ -72,7 +78,7 @@ public class ClientsFilesService {
             throw new AccessDeniedException("File does not belong to the specified user");
         }
 
-        String folderPath = System.getProperty("user.home") + "\\Desktop\\UserFiles\\" + clientsName + "\\";
+        String folderPath = System.getProperty("user.home") + "\\Desktop\\Феникс Файлы Клиентов\\" + clientsName + "\\";
         Path filePath = Paths.get(folderPath + clientsFile.getFileName());
         Files.delete(filePath);
 
@@ -85,7 +91,7 @@ public class ClientsFilesService {
         Client client = clientRepository.findById(userId).orElseThrow(() -> new NotFoundException("User not found"));
         String clientsName = client.getId() + " " + client.getName() + " " + client.getSurname();
 
-        String folderPath = System.getProperty("user.home") + "\\Desktop\\UserFiles\\" + clientsName + "\\";
+        String folderPath = System.getProperty("user.home") + "\\Desktop\\Феникс Файлы Клиентов\\" + clientsName + "\\";
         String filePath = folderPath + clientsFile.getFileName();
 
         try {

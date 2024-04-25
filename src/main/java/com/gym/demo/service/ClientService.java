@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +38,16 @@ public class ClientService {
 
     public Page<Client> findAllPageable(Pageable pageable) {
         return clientRepository.findAll(pageable);
+    }
+
+    public List<String> findAllNames() {
+        List<Client> clients = clientRepository.findAll();
+        List<String> clientsNames = new ArrayList<>();
+        int i = 0;
+        for (Client client : clients){
+            clientsNames.add(client.getName() + ' ' + client.getSurname());
+        }
+        return clientsNames;
     }
 
     public Page<Client> findContainingIgnoreCase(String keyword, Pageable pageable) {

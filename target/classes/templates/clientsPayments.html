@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Посещение</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link th:href="@{/css/clientsPayments_style.css}" rel="stylesheet"/>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+<div class="container">
+    <form class="card form-horizontal" th:object="${clientsPayments}">
+        <div class="row title-row">
+            <a th:href="@{/}" class="button button_primary">
+                <span class="arrow-icon">&larr;</span>
+                Назад
+            </a>
+        </div>
+
+        <fieldset>
+            <div th:if="${noDataMessage}">
+                <legend><center><h1 th:text="'Посещение:'"></h1></center></legend><br>
+                <p class="noDataText" th:text="${noDataMessage}"></p>
+            </div>
+            <div th:if="${clientsPayments}" class="form-is-present">
+                <legend><center><h1 th:text="'Посещение: ' + ${clientsPayments.name}"></h1></center></legend><br>
+                    <div class="form-group form-group-button">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4"><br>
+                            <a th:href="@{/clientsPayments/allClientsPayments}" class="button button_primary">За всё время <i class="glyphicon glyphicon-list-alt"></i></a>
+                        </div>
+                    </div>
+                <div class="form-group form-group-button">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4"><br>
+                        <a th:href="@{/clientsPayments/edit/__${clientsPayments.id}__}" class="button button_primary">
+                            Изменить
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    </div>
+                </div>
+                    <div class="row">
+                        <table class="inverted">
+                            <tr>
+                                <th>Имя</th>
+                                <td th:each="client : ${clientsPayments.clients}">
+                                    <input type="text" name="clients" th:value="${client}" class="table-input-name only-read" autocomplete="off">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Нал</th>
+                                <td th:each="cash_payment : ${clientsPayments.cashPayments}">
+                                    <input type="text" name="cashPayments" th:value="${cash_payment}" class="table-input only-read" autocomplete="off"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Без/н</th>
+                                <td th:each="card_payment : ${clientsPayments.cardPayments}">
+                                    <input type="text" name="cardPayments" th:value="${card_payment}" class="table-input only-read" autocomplete="off"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Дата оплаты</th>
+                                <td th:each="date : ${clientsPayments.dates}">
+                                    <input type="text" name="dates" th:value="${#dates.format(date, 'dd.MM.yyyy')}" class="table-input only-read">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4"><br>
+                        <a th:href="@{'/clientsPayments/delete/' + ${clientsPayments.id}}" class="button button_primary btn-delete" th:name="${clientsPayments.name}">Удалить <i class="glyphicon glyphicon-trash"></i></a>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"></label>
+                        <div class="col-md-4"><br>
+                            <a th:href="@{'/clientsPayments/export/' + ${clientsPayments.id}}" class="button button_primary btn-report">Сформировать отчёт <i class="glyphicon glyphicon-list-alt"></i></a>
+                        </div>
+                    </div>
+            </div>
+        </fieldset>
+    </form>
+    <div class="form-group button_hidden">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4"><br>
+            <a class="button button_primary add" id="toggle">Добавить <i class="glyphicon glyphicon-plus" ></i></a>
+        </div>
+    </div>
+    <div id="content" class="is-hidden">
+        <form class="card form-horizontal" id="clientsPayments_form" method="post">
+            <legend><center><h1><b>Новый список посещения</b></h1></center></legend><br>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Название</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                        <input name="name" id="name" placeholder="Название" autocomplete="off" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <table>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Нал</th>
+                        <th>Без/н</th>
+                        <th>Дата оплаты</th>
+                    </tr>
+                    <tr th:each="clientName : ${clientsNames}">
+                        <td>
+                            <input type="text" id="clients" name="clients"  th:value="${clientName}" class="table-input-name only-read" autocomplete="off">
+                        </td>
+                        <td>
+                            <input type="text" pattern="^[0-9\.]*$" title="Цифры от 1 до 10 и '.' для разделения десятичных частей" id="cash_payments" name="cashPayments" class="table-input" autocomplete="off"/>
+                        </td>
+                        <td>
+                            <input type="text" pattern="^[0-9\.]*$" title="Цифры от 1 до 10 и '.' для разделения десятичных частей" id="card_payments" name="cardPayments" class="table-input" autocomplete="off"/>
+                        </td>
+                        <td>
+                            <input type="date" id="dates" name="dates" class="form-control-date">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br>
+                    <button type="submit" form="clientsPayments_form" class="button button_primary" >Сохранить <span class="glyphicon glyphicon-pencil"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade text-center" id="confirmModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h5 class="modal-title">Удаление списка посещения</h5>
+            </div>
+
+            <div class="modal-body">
+                <span id="confirmText"></span>
+            </div>
+
+            <div class="modal-footer">
+                <a type="button" id="yesBtn" class="btn btn-danger">Да</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/3.5.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.4.0/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/delete_clientsPayments.js}"></script>
+<script th:src="@{/js/show-form.js}"></script>
+</body>
+</html>
