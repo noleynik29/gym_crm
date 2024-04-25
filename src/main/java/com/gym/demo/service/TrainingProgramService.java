@@ -27,7 +27,6 @@ public class TrainingProgramService {
         Optional<Client> clientOptional = clientRepository.findById(clientId);
         if (clientOptional.isPresent()) {
             trainingProgram.setClientId(clientId);
-            System.out.println(trainingProgram.toString());
             return trainingProgramRepository.save(trainingProgram);
         } else {
             throw new IllegalArgumentException("Client not found");

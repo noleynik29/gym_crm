@@ -189,6 +189,9 @@ body {
 
     .button-row {
         justify-content: space-between;
+        display: flex;
+        align-items: center;
+        padding: 10px
     }
 
     fieldset {
@@ -198,4 +201,10 @@ body {
     .regime {
         margin-top: -20px;
         margin-bottom: 40px;
+    }
+
+    @media screen and (max-width: 1000px) {
+      .button-row {
+              display: block;
+      }
     }

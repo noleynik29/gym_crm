@@ -242,16 +242,18 @@ td a:hover {
 }
 
 .row {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
 }
 
 .title-row {
+    margin-left: -40px;
+    margin-right: 40px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
 }
 
 .title-row h1 {
@@ -340,4 +342,20 @@ td a:hover {
 .glyphicon-search {
     margin-top: 5px;
     color: #0d0d0d;
+}
+
+@media screen and (max-width: 1200px) {
+      .title-row {
+              display: block;
+              margin-bottom: 50px;
+      }
+
+      .button_primary {
+              margin-right: 25px;
+      }
+
+      .row {
+          margin-right: 0;
+          margin-left: 0;
+      }
 }

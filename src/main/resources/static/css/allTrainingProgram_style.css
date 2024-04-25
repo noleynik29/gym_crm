@@ -51,7 +51,8 @@
       }
 
       .container {
-        margin-bottom: 25px;
+        margin: 0 auto;
+        margin-left: 350px; ------------------------------------
       }
 
       .card {

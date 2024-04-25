@@ -8,14 +8,16 @@
     </head>
     <body>
     <div class="card">
-        <div class="row title-row">
+        <div class="title-row">
             <h1 class="h1-title">Клиенты PHOENIX</h1>
-            <div class="right-content">
+                <a href="/clientsPayments" class="button button_primary">
+                    Посещение
+                    <span class="arrow-icon">→</span>
+                </a>
                 <a href="/registration" class="button button_primary">
                     Регистрация клиента
                     <span class="arrow-icon">→</span>
                 </a>
-            </div>
         </div>
 
         <form th:action="@{/}" id="searchForm">
