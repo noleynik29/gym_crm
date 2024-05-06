@@ -96,19 +96,19 @@
                     <tr>
                         <th>№</th>
                         <td th:each="i  : ${#numbers.sequence(0,19)}">
-                            <input type="text"  id="number" name="number" class="table-input" autocomplete="off" maxlength="3"/>
+                            <input type="text" pattern="^[0-9]*$" title="Только цифры"  id="number" name="number" class="table-input" autocomplete="off" maxlength="3"/>
                         </td>
                     </tr>
                     <tr>
                         <th>Нагрузка</th>
                         <td th:each="i : ${#numbers.sequence(0,19)}">
-                            <input type="text"  id="loads" name="loads" class="table-input" autocomplete="off" maxlength="3"/>
+                            <input type="text" pattern="^[0-9]*$" title="Только цифры"  id="loads" name="loads" class="table-input" autocomplete="off" maxlength="3"/>
                         </td>
                     </tr>
                     <tr>
                         <th>Кол-во</th>
                         <td th:each="i : ${#numbers.sequence(0,19)}">
-                            <input type="text"  id="reps" name="reps" class="table-input" autocomplete="off" maxlength="3"/>
+                            <input type="text" pattern="^[0-9]*$" title="Только цифры"  id="reps" name="reps" class="table-input" autocomplete="off" maxlength="3"/>
                         </td>
                     </tr>
                 </table>

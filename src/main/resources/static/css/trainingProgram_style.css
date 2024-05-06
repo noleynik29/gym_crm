@@ -227,32 +227,11 @@ body {
       border: 1px solid #e6e600;
     }
 
-    textarea:focus,
-            input[type="text"]:focus,
-            input[type="password"]:focus,
-            input[type="datetime"]:focus,
-            input[type="datetime-local"]:focus,
-            input[type="date"]:focus,
-            input[type="month"]:focus,
-            input[type="time"]:focus,
-            input[type="week"]:focus,
-            input[type="number"]:focus,
-            input[type="email"]:focus,
-            input[type="url"]:focus,
-            input[type="search"]:focus,
-            input[type="tel"]:focus,
-            input[type="color"]:focus,
-            .uneditable-input:focus {
-              border-color: #ffff00;
-              box-shadow: 0 1px 1px rgba(255, 255, 0, 1) inset, 0 0 8px rgba(255, 255, 0, 0.37);
-              outline: 0 none;
-        }
-
-        textarea:focus {
+    .input-group input:focus {
             border-color: #ffff00;
             box-shadow: 0 1px 1px rgba(255, 255, 0, 1) inset, 0 0 8px rgba(255, 255, 0, 0.37);
             outline: 0 none;
-        }
+    }
 
     .noDataText {
         color: #ffff00;
