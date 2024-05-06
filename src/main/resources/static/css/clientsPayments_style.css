@@ -244,10 +244,10 @@ body {
     }
 
     th, td {
-      color: #e6e600;
-      background: #272727;
-      font-size: 22px;
-      border: 1px solid #e6e600;
+          color: #e6e600;
+          background: #272727;
+          font-size: 22px;
+          border: 1px solid #e6e600;
     }
 
     .noDataText {
