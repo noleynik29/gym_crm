@@ -13,7 +13,9 @@ import java.util.Optional;
 
 @Service
 public class MedicalDataService {
+    @Autowired
     private final MedicalDataRepository medicalDataRepository;
+    @Autowired
     private final ClientRepository clientRepository;
 
     @Autowired

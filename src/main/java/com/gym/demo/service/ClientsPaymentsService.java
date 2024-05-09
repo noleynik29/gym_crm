@@ -24,8 +24,10 @@ import java.util.Optional;
 
 @Service
 public class ClientsPaymentsService {
+    @Autowired
     private final ClientsPaymentsRepository clientsPaymentsRepository;
 
+    @Autowired
     private final ClientRepository clientRepository;
 
     @Autowired
